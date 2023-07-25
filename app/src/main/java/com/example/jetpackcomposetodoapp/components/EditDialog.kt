@@ -12,7 +12,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -20,12 +19,9 @@ import com.example.jetpackcomposetodoapp.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EditDialog(
-    isShowDialog: MutableState<Boolean>,
-    viewModel: MainViewModel = hiltViewModel()
-) {
+fun EditDialog(viewModel: MainViewModel = hiltViewModel()) {
     AlertDialog(
-        onDismissRequest = { isShowDialog.value = false },
+        onDismissRequest = { viewModel.isShowDialog = false },
         title = { Text(text = "タスク新規作成") },
         text = {
             Column {
@@ -47,7 +43,7 @@ fun EditDialog(
                 Spacer(modifier = Modifier.weight(1f))
                 Button(
                     modifier = Modifier.width(120.dp),
-                    onClick = { isShowDialog.value = false }
+                    onClick = { viewModel.isShowDialog = false }
                 ) {
                     Text(text = "キャンセル")
                 }
@@ -55,7 +51,7 @@ fun EditDialog(
                 Button(
                     modifier = Modifier.width(120.dp),
                     onClick = {
-                        isShowDialog.value = false
+                        viewModel.isShowDialog = false
                         viewModel.createTask()
                     }
                 ) {
