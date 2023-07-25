@@ -54,7 +54,10 @@ fun EditDialog(
                 Spacer(modifier = Modifier.width(10.dp))
                 Button(
                     modifier = Modifier.width(120.dp),
-                    onClick = { isShowDialog.value = false }
+                    onClick = {
+                        isShowDialog.value = false
+                        viewModel.createTask()
+                    }
                 ) {
                     Text(text = "OK")
                 }
