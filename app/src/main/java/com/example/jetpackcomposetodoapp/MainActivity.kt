@@ -16,7 +16,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.example.jetpackcomposetodoapp.components.EditDialog
 import com.example.jetpackcomposetodoapp.ui.theme.JetpackComposeTodoAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,8 +44,16 @@ class MainActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainContent() {
+    val isShowDialog = remember {
+        mutableStateOf(false)
+    }
+    if (isShowDialog.value) {
+        EditDialog(isShowDialog)
+    }
+
+
     Scaffold(floatingActionButton = {
-        FloatingActionButton(onClick = { /*TODO*/ }) {
+        FloatingActionButton(onClick = { isShowDialog.value = true }) {
             Icon(imageVector = Icons.Default.Add, contentDescription = "新規作成")
         }
     }) {
