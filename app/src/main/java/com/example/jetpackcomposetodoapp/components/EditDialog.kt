@@ -15,19 +15,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.jetpackcomposetodoapp.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EditDialog(isShowDialog: MutableState<Boolean>) {
+fun EditDialog(
+    isShowDialog: MutableState<Boolean>,
+    viewModel: MainViewModel = hiltViewModel()
+) {
     AlertDialog(
         onDismissRequest = { isShowDialog.value = false },
         title = { Text(text = "タスク新規作成") },
         text = {
             Column {
                 Text(text = "タイトル")
-                TextField(value = "", onValueChange = {})
+                TextField(
+                    value = viewModel.title,
+                    onValueChange = { viewModel.title = it })
                 Text(text = "詳細")
-                TextField(value = "", onValueChange = {})
+                TextField(
+                    value = viewModel.description,
+                    onValueChange = { viewModel.description = it })
             }
         },
         confirmButton = {
