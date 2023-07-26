@@ -26,6 +26,7 @@ class MainViewModel @Inject constructor(private val taskDao: TaskDao) : ViewMode
     fun setEditingTask(task: Task) {
         editingTask = task
         title = task.title
+        description = task.description
     }
 
     fun createTask() {
