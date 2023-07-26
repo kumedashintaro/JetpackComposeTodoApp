@@ -25,4 +25,10 @@ class MainViewModel @Inject constructor(private val taskDao: TaskDao) : ViewMode
             taskDao.insertTask(newTask)
         }
     }
+
+    fun deleteTask(task: Task) {
+        viewModelScope.launch {
+            taskDao.deleteTask(task)
+        }
+    }
 }

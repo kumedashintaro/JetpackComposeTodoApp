@@ -43,6 +43,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainContent(viewModel: MainViewModel = hiltViewModel()) {
@@ -60,7 +61,7 @@ fun MainContent(viewModel: MainViewModel = hiltViewModel()) {
         TaskList(
             tasks = tasks,
             onClickRow = {},
-            onClickDelete = {}
+            onClickDelete = { viewModel.deleteTask(it) }
         )
     }
 }
