@@ -35,7 +35,7 @@ fun TaskRow(
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "タスクタイトル")
+            Text(text = task.title)
             Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = { onClickDelete(task) }) {
                 Icon(imageVector = Icons.Default.Delete, contentDescription = "削除")
